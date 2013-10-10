@@ -21,9 +21,9 @@ on the project.
 I just want to try it out!
 --------------------------
 
-The easiest way is to download and run the JAR file from our
-[release page](https://github.com/dideler/chess-park/releases/tag/v1.0.0)
-which also contains instructions on how to get started. (There's also a
+You'll need to run the JAR file.
+Our [release page](https://github.com/dideler/chess-park/releases/tag/v1.0.0)
+contains instructions on how to get started. (There's also a
 [chess.jar](dist/chess.jar) file in the repository.)
 
 For more detailed information, please do read our fantastic [paper](report.pdf).
