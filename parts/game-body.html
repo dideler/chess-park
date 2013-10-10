@@ -1,0 +1,158 @@
+
+<link  href="//fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" media="all" href="css/lobby.css" />
+
+<script type="text/javascript" src="scripts/jquery.js"></script>
+<script type="text/javascript" src="scripts/game.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {	
+	f_drawBoard();
+});
+
+function handleMessage(data) {
+	//alert( (new XMLSerializer()).serializeToString(data) );
+	if($(data).find("error").size()) {
+		alert($(data).find("error").text());
+	}
+	else if($(data).find("warning").size()) {
+		alert($(data).find("warning").text());
+	}
+	else if ($(data).find("eventlist").size()) {
+		$(data).find("board").each(function(){
+			Board = eval($(this).text());
+			f_drawBoard();
+		});
+		$(data).find("whitePlayer").each(function(){
+			whitePlayer = $(this).text();
+			document.getElementById("whitePlayer").innerHTML = whitePlayer;
+			if (whitePlayer != Handle) {
+				alert(whitePlayer + " has entered the game");
+			}
+		});
+		$(data).find("blackPlayer").each(function(){
+			blackPlayer = $(this).text();
+			document.getElementById("blackPlayer").innerHTML = blackPlayer;
+			if (blackPlayer != Handle) {
+				alert(blackPlayer + " has entered the game");
+			}
+		});
+		$(data).find("move").each(function(){
+			from = parseInt($(this).find("from").text());
+			dest = parseInt($(this).find("dest").text());
+			f_movePiece(from,dest);
+			f_drawBoard();
+		});
+	}
+}
+
+function say(str) {
+	alert(str);
+}
+</script>
+
+</head>
+<body>
+
+<script type="text/javascript">
+document.write('<iframe src="listener?table=' + Table.id + '" style="display:none;">');
+document.write('<p>Browser must support iframes</p>');
+document.write('</iframe>');
+</script>
+
+<div id="outer">	
+<table width="100%">
+	<tr><td id="head" colspan="3"><h2>Online Chess Park</h2></td></tr>
+	<tr>
+	 <td id="leftpane">
+	  <ul>
+		<!--li><input type="button" id="drawBtn" onclick="offerDraw()" value="Offer Draw" class="gamebutton"></li-->
+		<!--li><input type="button" id="resignBtn" onclick="resign()" value="Resign" class="gamebutton"></li-->
+		<!--li><input type="button" id="undoBtn" onclick="undo()" value="Undo Move" disabled="disabled" class="gamebutton"></li-->
+		<li><input type="button" id="colourBtn" onclick="f_changeBoard()" value="Change Board" class="gamebutton"></li> 
+		<!--li><input type="button" id="messageBtn" onclick="message()" value="Message" class="gamebutton"></li-->
+		<li><input type="button" id="leaveBtn" onclick="document.location='lobby'" value="Leave Game" class="gamebutton"></li>
+	  </ul>
+	 </td>
+	 <td id="midpane"><center>
+  <table id="board" cellspacing="0" border="5" style="font-size:30px; cursor:hand;">
+	<script type="text/javascript">
+	for(var r = 0; r < 8; r++) {
+		document.write("<tr>\n");
+		for(var c = 0; c < 8; c++) {
+			document.write('<td'
+				+' id="square'+ r + '' + c + '"'
+				+' title="' + (String.fromCharCode(97+c)) + (8-r) + '"'
+				+' align="center" width=35 height=38 onclick="f_pick(id)"'
+				+ ((r+c)%2 ? (' bgcolor="' + Global.blackbg + '"') : (' bgcolor="' + Global.whitebg + '"'))
+				+ '></td>\n');
+			
+		}
+		document.write("</tr>\n");
+	}
+	</script>
+	</table></center>
+	 </td>
+	 <td id="rightpane">
+		<table id="players">
+		<tr><td><script type="text/javascript">document.write(Pieces[+6].html);</script></td><td id="whitePlayer"><label style="color:red">waiting...</label></td></tr>
+		<tr><td><script type="text/javascript">document.write(Pieces[-6].html);</script></td><td id="blackPlayer"><label style="color:red">waiting...</label></td></tr>
+		</table>
+	 </td>
+	</tr>
+	<tr><td id="footer" colspan="3">
+	  Copyright &copy; <script type="text/javascript"> var date = new Date(); document.write(date.getFullYear());</script>
+	  </td>
+	</tr>
+</table>
+</div>
+
+</body>
+
+<!--
+<div id="outer">
+<div id="header">
+  <h2>Online Chess Park</h2>
+</div>
+<div id="options">
+  <h4><center>Options</center></h4>
+  <ul>
+	<li><input type="button" id="drawBtn" onclick="offerDraw()" value="Offer Draw" class="gamebutton"></li>
+	<li><input type="button" id="resignBtn" onclick="resign()" value="Resign" class="gamebutton"></li>
+	<li><input type="button" id="undoBtn" onclick="undo()" value="Undo Move" disabled="disabled" class="gamebutton"></li> 
+	<li><input type="button" id="colourBtn" onclick="f_changeBoard()" value="Change Board" class="gamebutton"></li> 
+	<li><input type="button" id="messageBtn" onclick="message()" value="Message" class="gamebutton"></li>
+	<li><input type="button" id="leaveBtn" onclick="leaveGame()" value="Leave Game" class="gamebutton"></li>
+  </ul>
+</div>
+<noscript>Please enable client-side scripting (javascript).</noscript>
+<div id="log">
+</div>
+<div id="game">
+  <table id="board" cellspacing="0" border="5" style="font-size:30px; cursor:hand;">
+	<script type="text/javascript">
+	for(var r = 0; r < 8; r++) {
+		document.write("<tr>\n");
+		for(var c = 0; c < 8; c++) {
+			document.write('<td'
+				+' id="square'+ r + '' + c + '"'
+				+' title="' + (String.fromCharCode(97+c)) + (8-r) + '"'
+				+' align="center" width=35 height=38 onclick="f_pick(id)"'
+				+ ((r+c)%2 ? (' bgcolor="' + Global.blackbg + '"') : (' bgcolor="' + Global.whitebg + '"'))
+				+ '></td>\n');
+			
+		}
+		document.write("</tr>\n");
+	}
+	</script>
+	</table>
+	</div>
+	<div id="footer">
+		Copyright &copy; <script type="text/javascript"> var date = new Date(); document.write(date.getFullYear());</script>
+		</div>
+	</div>
+</div>
+
+</body>
+-->
+</html>

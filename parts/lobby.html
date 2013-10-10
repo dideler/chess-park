@@ -1,0 +1,124 @@
+<!--
+ Copyright (C) 2011  Graham Sharp (graham@pounddefine.net)
+ Copyright (C) 2011  Dennis Ideler (ideler.dennis@gmail.com)
+ 
+ Which license are we using?
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Chess Online - Lobby</title>
+<meta name="Keywords" content="chess,browser,turn-based,basic,multiplayer,local,unicode">
+<meta name="Description" content="Can't go to the park to play chess? Play online!">
+
+<link  href="//fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" media="all" href="css/lobby.css" />
+
+<script type="text/javascript" src="scripts/jquery.js"></script>
+
+<script type="text/javascript">
+
+function handleMessage(data) {	
+	if($(data).find("error").size()) {
+		alert($(data).find("error").text());
+	}
+	if($(data).find("warning").size()) {
+		alert($(data).find("warning").text());
+	}
+	else if($(data).find("tablelist").size()) {
+	  $(data).find("table").each(function(){
+		tid = $(this).find("tid").text();
+		black = $(this).find("black").text();
+		white = $(this).find("white").text();
+		
+		addRow(tid,white,black);
+	  });
+	}
+	else if($(data).find("eventlist").size()) {
+	  $(data).find("addtable").each(function(){
+		tid = $(this).find("tid").text();
+		black = $(this).find("black").text();
+		white = $(this).find("white").text();
+		
+		addRow(tid,white,black);
+	  });
+	  $(data).find("removetable").each(function(){
+		tid = $(this).find("tid").text();
+		
+		removeRow(tid);
+	  });
+	}
+}
+
+function addRow(tid, white, black) {
+	var table = document.getElementById("lobbytable");
+	var row= table.insertRow(-1);
+	row.setAttribute('id', "lobbytablerow" + tid);
+	//alert(row.id);
+	//row.id = "lobbytablerow" + tid;
+	//alert(row.id);
+	var cell0=row.insertCell(0);
+	var cell1=row.insertCell(1);
+	var cell2=row.insertCell(2);
+	cell0.innerHTML = tid;
+	if (white=="") {
+		cell1.innerHTML = "<a href='game?table="+tid+"'>Join</a>";
+	} else {
+		cell1.innerHTML = white;
+	}
+	if (black=="") {
+		cell2.innerHTML = "<a href='game?table="+tid+"'>Join</a>";
+	} else {
+		cell2.innerHTML = black;
+	}
+}
+
+function removeRow(tid) {
+	var table = document.getElementById("lobbytable");
+	var row = document.getElementById("lobbytablerow" + tid);
+	//alert("lobbytablerow" + tid);
+	table.deleteRow(row.rowIndex);
+}
+</script>
+
+</head>
+<body>
+<script type="text/javascript">
+document.write('<iframe src="lobbylistener" style="display:none;">');
+document.write('<p>Browser must support iframes</p>');
+document.write('</iframe>');
+</script>
+
+<div id="outer">	
+<table width="100%">
+	<tr><td id="head" colspan="3"><h2>Online Chess Park</h2></td></tr>
+	<tr>
+	 <td id="leftpane">
+	  <ul>
+		<!--li><input type="button" id="drawBtn" onclick="offerDraw()" value="Quick Play" class="lobbybutton"></li-->
+		<!--li><input type="button" id="challengeBtn" onclick="challenge()" value="Challenge" class="lobbybutton"></li-->
+		<!--li><input type="button" id="messageBtn" onclick="message()" value="Message" class="lobbybutton"></li-->
+		<li><input type="button" id="leaveBtn" onclick="document.location='login'" value="Leave Park" class="lobbybutton"></li>
+	  </ul>
+	 </td>
+	 <td id="midpane">
+		<a href="newtable">Create new game</a>
+		<table id='lobbytable'>
+		 <tr id='lobbyheader'><th>Table</th><th>White</th><th>Black</th><tr>
+		</table>
+	 </td>
+	 <td id="rightpane">
+	 
+	 </td>
+	</tr>
+	<tr><td id="footer" colspan="3">
+	  Copyright &copy; <script type="text/javascript"> var date = new Date(); document.write(date.getFullYear());</script>
+	  </td>
+	</tr>
+</table>
+</div>
+
+</body>
+</html>

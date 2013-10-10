@@ -1,0 +1,36 @@
+
+<script type="text/javascript" src="scripts/jquery.js"></script>
+
+<script type="text/javascript">
+
+$.ajaxSetup({cache: false});
+
+function startListener() {
+	$.get("listen",
+		{ table: Table.id },
+		function(data){
+			if(!$(data).find("error").size()) {
+				startListener();
+			}
+			top.handleMessage(data);
+		},
+		"xml");
+}
+
+$(document).ready(function() {
+	$.get("listen",
+		{ table: Table.id, reset:1 },
+		function(data){
+			if(!$(data).find("error").size()) {
+				startListener();
+			}
+			top.handleMessage(data);
+		},
+		"xml");
+});
+</script>
+
+</head>
+<body>
+</body>
+</html>

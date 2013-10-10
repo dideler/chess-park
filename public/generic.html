@@ -1,0 +1,50 @@
+<!--
+ Copyright (C) 2011  Graham Sharp (graham@pounddefine.net)
+ Copyright (C) 2011  Dennis Ideler (ideler.dennis@gmail.com)
+ 
+ Which license are we using?
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Chess Online - Lobby</title>
+<meta name="Keywords" content="chess,browser,turn-based,basic,multiplayer,local,unicode">
+<meta name="Description" content="Can't go to the park to play chess? Play online!">
+
+<link  href="//fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" media="all" href="css/lobby.css" />
+
+<script type="text/javascript" src="scripts/jquery.js"></script>
+
+
+</head>
+<body>
+  <div id="outer">	
+	<table width="100%">
+	<tr><td id="head" colspan="3"><h2>Online Chess Park</h2></td></tr>
+	<tr>
+	 <td id="leftpane">
+      <ul>
+        <li><input type="button" id="drawBtn" onclick="offerDraw()" value="Quick Play" class="lobbybutton"></li>
+        <li><input type="button" id="challengeBtn" onclick="challenge()" value="Challenge" class="lobbybutton"></li>
+        <li><input type="button" id="messageBtn" onclick="message()" value="Message" class="lobbybutton"></li>
+        <li><input type="button" id="leaveBtn" onclick="leave()" value="Leave Park" class="lobbybutton"></li>
+      </ul>
+	 </td>
+	 <td id="midpane">
+	 
+	 </td>
+	 <td id="rightpane">
+	 
+	 </td>
+	</tr>
+	<tr><td id="footer" colspan="3">
+      Copyright &copy; <script type="text/javascript"> var date = new Date(); document.write(date.getFullYear());</script>
+	  </td>
+	</tr>
+	</table>
+  </div>
+</body>
+</html>

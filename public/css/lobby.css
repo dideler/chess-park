@@ -1,0 +1,78 @@
+#head {
+    padding: 15px;
+    margin: 0px;
+    text-align: center;
+    color: #09f;
+    /*font-family: 'Reenie Beanie', serif;*/
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    text-shadow: 8px 8px 8px #ddd;
+    text-decoration: none;
+    text-transform: capitalize;
+    letter-spacing: 0em;
+    word-spacing: 0em;
+    line-height: 1em;
+    border-bottom: thin solid #000000;
+}
+body {
+    background: url(../images/park.jpg) no-repeat;
+    background-size: 100%;
+    font-size: 12px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+div#outer {
+    width: 80%;
+    background-color: #FFFFFF;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
+    border: thin solid #000000;
+    filter: alpha(opacity=95);
+    opacity: 0.95;
+}
+
+#leftpane {
+	vertical-align:top;
+	width: 25%;
+}
+#midpane {
+	vertical-align:top;
+	width: 50%;
+}
+#rightpane {
+	vertical-align:top;
+	width: 25%;
+}
+
+#leftpane input {
+	color: #fff; font-size: 14px; background-color: #09f; height: 30px; width: 140px; font-weight: 900;
+}
+#leftpane ul {
+	text-align: center;
+	list-style-type:none;
+	padding: 0;
+	margin: 0;
+}
+#footer {
+    padding: 15px;
+    margin: 0px;
+    border-top: thin solid #000000;
+}
+noscript {
+    margin-left: 5%;
+    font-size: 18px;
+    color: red;
+}
+
+table#board td {
+    border: none;
+    width: 41px;
+    height: 43px;
+}
+
+table#players {
+	border: 1px solid black;
+}
