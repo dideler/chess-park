@@ -23,7 +23,7 @@ I just want to try it out!
 
 You'll need to run the JAR file.
 Our [release page](https://github.com/dideler/chess-park/releases/tag/v1.0.0)
-contains instructions on how to get started. (There's also a
-[chess.jar](dist/chess.jar) file in the repository.)
+contains instructions on how to get started.  
+(There's also a [chess.jar](dist/chess.jar) file in the repository.)
 
 For more detailed information, please do read our fantastic [paper](report.pdf).
