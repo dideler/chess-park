@@ -42,12 +42,12 @@ public class LoginHandler implements HttpHandler {
 		
 		// send response to client
 		String response = "<html><head>" +
-        "<title>Online Chess Park</title>" +
+        "<title>Chess Park</title>" +
         "<link  href=\"//fonts.googleapis.com/css?family=Reenie+Beanie:regular\" rel=\"stylesheet\" type=\"text/css\">" +
         "<link type=\"text/css\" rel=\"stylesheet\" media=\"all\" href=\"css/login.css\" />" +
         "</head><body>" +
         "<div id=\"outer\">" +
-        "<div id=\"header\"><h2>Online Chess Park</h2></div>" +
+        "<div id=\"header\"><h2>Chess Park</h2></div>" +
         "<div id=\"info\">" +
         "<p>" + message + "</p>" +
 				"<form method=\"post\">" +
